@@ -12,13 +12,17 @@ const rows = [
   { icon: Clock, label: 'Darba laiks', hours: contactInfo.hours },
 ]
 
-// Geocoding the free-text address (`q=<address>`) turned out to be unreliable with this
-// key-less embed: the "5-k-2" building/block suffix in the real address occasionally fails to
-// geocode at all, and Google silently falls back to a fully zoomed-out world map instead of
-// showing an error — a broken map that looks "fine" (no console error) but is useless to a
-// visitor. Pinning exact coordinates (looked up once from Google Maps for this address) plus an
-// explicit `z=` zoom sidesteps geocoding entirely, so the embed is deterministic every load.
-const mapEmbedSrc = `https://www.google.com/maps?q=56.968525,23.7733799&z=17&output=embed`
+// Geocoding the free-text STREET address (`q=<address>`) turned out to be unreliable with
+// this key-less embed: the "5-k-2" building/block suffix occasionally fails to geocode at all,
+// and Google silently falls back to a fully zoomed-out world map instead of showing an error.
+// Querying by the BUSINESS NAME instead (PONTONS's real, verified Google Business listing) is
+// what actually fixes that *and* is what makes the embed clickable: only a query that resolves
+// to a real place card gives the marker a working info popup and makes "Atvērt pakalpojumā
+// Maps" open that place's own listing page — a bare lat/lng pin can't do either, since it isn't
+// tied to any place ID.
+const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
+  'Pontons, dāmu un kungu frizētava, Jūrmala'
+)}&z=17&output=embed`
 
 export function Contact() {
   return (

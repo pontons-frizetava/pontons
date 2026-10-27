@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, Phone } from 'lucide-react'
 import { contactInfo } from '../data/contactInfo'
+import { socials } from '../data/socials'
 import { OPEN_CALL_MODAL_EVENT } from '../lib/callModal'
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll'
 
@@ -69,6 +70,22 @@ export function CallModal() {
               <Phone size={16} strokeWidth={2.25} />
               Zvanīt tagad
             </a>
+
+            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted">Vai seko mums</p>
+            <div className="mt-3 flex items-center justify-center gap-3">
+              {socials.map(({ id, label, href, icon: Icon }) => (
+                <a
+                  key={id}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-ivory/80 transition-all duration-300 hover:scale-110 hover:border-accent/50 hover:bg-accent/10 hover:text-accent-2"
+                >
+                  <Icon size={20} strokeWidth={1.75} />
+                </a>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       )}
