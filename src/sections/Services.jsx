@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Container } from '../components/Container'
+import { GlowLines } from '../components/GlowLines'
 import { Eyebrow } from '../components/Eyebrow'
 import { Reveal } from '../components/Reveal'
 import { ServiceCard } from '../components/ServiceCard'
@@ -11,7 +12,8 @@ export function Services() {
   const [activeService, setActiveService] = useState(null)
 
   return (
-    <section id="pakalpojumi" className="relative py-24 md:py-32">
+    <section id="pakalpojumi" className="relative overflow-hidden py-24 md:py-32">
+      <GlowLines />
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>

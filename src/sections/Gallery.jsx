@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Container } from '../components/Container'
+import { GlowLines } from '../components/GlowLines'
 import { Eyebrow } from '../components/Eyebrow'
 import { Reveal } from '../components/Reveal'
 import { GalleryItem } from '../components/GalleryItem'
@@ -14,7 +15,8 @@ export function Gallery() {
   }
 
   return (
-    <section id="galerija" className="relative py-24 md:py-32">
+    <section id="galerija" className="relative overflow-hidden py-24 md:py-32">
+      <GlowLines />
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

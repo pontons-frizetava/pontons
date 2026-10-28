@@ -26,8 +26,8 @@ export function Navbar() {
         <div
           className={`flex items-center justify-between rounded-full border px-4 py-2.5 backdrop-blur-xl transition-all duration-500 md:px-6 ${
             scrolled
-              ? 'border-line bg-ink/80 shadow-[0_8px_30px_rgba(0,0,0,0.35)]'
-              : 'border-white/5 bg-white/[0.03]'
+              ? 'border-accent/30 bg-ink/80 shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_24px_2px_rgba(47,125,255,0.18)]'
+              : 'border-accent/20 bg-white/[0.03] shadow-[0_0_20px_2px_rgba(47,125,255,0.12)]'
           }`}
         >
           <a href="#sakums" className="shrink-0">

@@ -6,7 +6,7 @@ export function ServiceCard({ icon: Icon, title, description, image, onOpen }) {
     <button
       type="button"
       onClick={onOpen}
-      className="group relative flex w-full flex-col overflow-hidden rounded-3xl border border-line bg-ink-soft text-left transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/40"
+      className="group relative flex w-full flex-col overflow-hidden rounded-3xl border border-accent/25 bg-ink-soft text-left shadow-[0_0_20px_2px_rgba(47,125,255,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[0_0_30px_4px_rgba(47,125,255,0.25)]"
     >
       <Media
         src={image}

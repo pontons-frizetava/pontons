@@ -2,6 +2,7 @@ import { MapPin, Phone, Clock } from 'lucide-react'
 import { Container } from '../components/Container'
 import { Eyebrow } from '../components/Eyebrow'
 import { Reveal } from '../components/Reveal'
+import { GlowLines } from '../components/GlowLines'
 import { contactInfo } from '../data/contactInfo'
 
 // No public email address yet, so there is deliberately no E-pasts row here — only add one back
@@ -26,7 +27,8 @@ const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
 
 export function Contact() {
   return (
-    <section id="kontakti" className="relative py-24 md:py-32">
+    <section id="kontakti" className="relative overflow-hidden py-24 md:py-32">
+      <GlowLines />
       <Container>
         <div className="grid gap-14 lg:grid-cols-2">
           <div>

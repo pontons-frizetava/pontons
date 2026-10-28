@@ -6,7 +6,7 @@ export function GalleryItem({ image, alt, tall, onOpen }) {
     <button
       type="button"
       onClick={onOpen}
-      className={`group relative mb-4 block w-full overflow-hidden rounded-2xl border border-line text-left ${
+      className={`group relative mb-4 block w-full overflow-hidden rounded-2xl border border-accent/25 text-left shadow-[0_0_18px_2px_rgba(47,125,255,0.12)] transition-shadow duration-500 hover:border-accent/50 hover:shadow-[0_0_28px_4px_rgba(47,125,255,0.25)] ${
         tall ? 'h-96' : 'h-64'
       }`}
       style={{ breakInside: 'avoid' }}
