@@ -11,7 +11,7 @@ export const services = [
     details:
       'Profesionāls matu griezums, kas pielāgots tavai galvas formai, matu tipam un vēlamajam stilam — no klasikas līdz modernām tendencēm.',
     price: 'no 20 €',
-    image: '/images/services/mens-haircut.jpg',
+    image: '/images/services/mens-haircut.png',
   },
   {
     id: 'sieviešu-griezumi',
