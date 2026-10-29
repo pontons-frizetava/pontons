@@ -1,5 +1,6 @@
 import { InstagramIcon } from '../components/icons/InstagramIcon'
 import { FacebookIcon } from '../components/icons/FacebookIcon'
+import { TikTokIcon } from '../components/icons/TikTokIcon'
 
 export const socials = [
   {
@@ -13,5 +14,11 @@ export const socials = [
     label: 'Facebook — PONTONS',
     href: 'https://www.facebook.com/PontonsFrizetava/?locale=lv_LV',
     icon: FacebookIcon,
+  },
+  {
+    id: 'tiktok',
+    label: 'TikTok — PONTONS',
+    href: 'https://www.tiktok.com/@pontons_ponto',
+    icon: TikTokIcon,
   },
 ]
