@@ -41,6 +41,6 @@ export const services = [
     details:
       'Matu krāsošana un tonēšana ar kvalitatīviem produktiem — jauns izskats, kas iedvesmo jaunu Tu.',
     price: 'no 50 €',
-    image: '/images/services/coloring.jpg',
+    image: '/images/services/coloring.webp',
   },
 ]
