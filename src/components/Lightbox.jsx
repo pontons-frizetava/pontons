@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Media } from './Media'
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll'
+import { useT } from '../i18n/ui'
 
 export function Lightbox({ items, index, onClose, onNavigate }) {
   const open = index !== null
   useLockBodyScroll(open)
+  const t = useT()
 
   useEffect(() => {
     if (!open) return
@@ -35,7 +37,7 @@ export function Lightbox({ items, index, onClose, onNavigate }) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Aizvērt"
+            aria-label={t.common.aizvert}
             className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-line text-ivory transition-colors hover:border-accent/50 hover:text-accent-2"
           >
             <X size={20} />
@@ -47,7 +49,7 @@ export function Lightbox({ items, index, onClose, onNavigate }) {
               e.stopPropagation()
               onNavigate(-1)
             }}
-            aria-label="Iepriekšējā"
+            aria-label={t.common.iepriekseja}
             className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line text-ivory transition-colors hover:border-accent/50 hover:text-accent-2 md:left-6"
           >
             <ChevronLeft size={20} />
@@ -70,7 +72,7 @@ export function Lightbox({ items, index, onClose, onNavigate }) {
               e.stopPropagation()
               onNavigate(1)
             }}
-            aria-label="Nākamā"
+            aria-label={t.common.nakama}
             className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line text-ivory transition-colors hover:border-accent/50 hover:text-accent-2 md:right-6"
           >
             <ChevronRight size={20} />

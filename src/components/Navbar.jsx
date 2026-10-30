@@ -3,9 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Phone, Menu, X } from 'lucide-react'
 import { Logo } from './Logo'
 import { Button } from './Button'
+import { LanguageToggle } from './LanguageToggle'
 import { openCallModal } from '../lib/callModal'
 import { Container } from './Container'
 import { navLinks } from '../data/navLinks'
+import { navLinksEn } from '../i18n/content.en'
+import { useT } from '../i18n/ui'
+import { useLanguage } from '../lib/LanguageContext'
 import { useScrollPosition } from '../hooks/useScrollPosition'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll'
@@ -15,6 +19,9 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
   const activeId = useActiveSection(navLinks.map((l) => l.href.slice(1)))
   useLockBodyScroll(open)
+  const t = useT()
+  const { language } = useLanguage()
+  const label = (link) => (language === 'en' ? navLinksEn[link.href] : link.label)
 
   return (
     <header
@@ -45,26 +52,30 @@ export function Navbar() {
                     isActive ? 'text-accent-2' : 'text-ivory/75 hover:text-ivory'
                   }`}
                 >
-                  {link.label}
+                  {label(link)}
                 </a>
               )
             })}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            <LanguageToggle />
             <Button as="button" onClick={openCallModal} icon={Phone} className="!px-6 !py-2.5 text-[13px]">
-              Zvanīt
+              {t.common.zvanit}
             </Button>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Aizvērt izvēlni' : 'Atvērt izvēlni'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ivory lg:hidden"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageToggle />
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? t.common.aizvertIzvelni : t.common.atvertIzvelni}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ivory"
+            >
+              {open ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </Container>
 
@@ -85,7 +96,7 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-3 py-3 font-display text-base font-medium text-ivory/85 transition-colors hover:bg-white/5 hover:text-accent-2"
                 >
-                  {link.label}
+                  {label(link)}
                 </a>
               ))}
             </nav>
@@ -98,7 +109,7 @@ export function Navbar() {
               }}
               className="mt-4 w-full"
             >
-              Zvanīt
+              {t.common.zvanit}
             </Button>
           </motion.div>
         )}

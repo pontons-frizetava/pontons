@@ -1,10 +1,12 @@
 import { socials } from '../data/socials'
+import { useT } from '../i18n/ui'
 
 export function SocialRail() {
+  const t = useT()
   return (
     <div className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-5 lg:flex">
       <span className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-white/80 [writing-mode:vertical-rl]">
-        Seko mums
+        {t.common.sekoMums}
       </span>
       <span className="h-14 w-px bg-white/30" />
       {socials.map(({ id, label, href, icon: Icon }) => (

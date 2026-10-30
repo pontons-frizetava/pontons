@@ -4,10 +4,12 @@ import { Media } from './Media'
 import { Button } from './Button'
 import { openCallModal } from '../lib/callModal'
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll'
+import { useT } from '../i18n/ui'
 
 export function ServiceModal({ service, onClose }) {
   const open = Boolean(service)
   useLockBodyScroll(open)
+  const t = useT()
 
   return (
     <AnimatePresence>
@@ -31,7 +33,7 @@ export function ServiceModal({ service, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="Aizvērt"
+              aria-label={t.common.aizvert}
               className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-ink/60 text-white backdrop-blur-sm transition-colors hover:border-accent/50 hover:text-accent-2"
             >
               <X size={18} />
@@ -69,7 +71,7 @@ export function ServiceModal({ service, onClose }) {
                 }}
                 className="mt-7 w-full"
               >
-                Zvanīt
+                {t.common.zvanit}
               </Button>
             </div>
           </motion.div>

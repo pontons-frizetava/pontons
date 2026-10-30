@@ -4,14 +4,12 @@ import { Eyebrow } from '../components/Eyebrow'
 import { Reveal } from '../components/Reveal'
 import { GlowLines } from '../components/GlowLines'
 import { contactInfo } from '../data/contactInfo'
+import { contactDaysEn } from '../i18n/content.en'
+import { useT } from '../i18n/ui'
+import { useLanguage } from '../lib/LanguageContext'
 
 // No public email address yet, so there is deliberately no E-pasts row here — only add one back
 // once contactInfo.email actually exists.
-const rows = [
-  { icon: MapPin, label: 'Adrese', value: contactInfo.address },
-  { icon: Phone, label: 'Telefons', value: contactInfo.phone, href: contactInfo.telHref },
-  { icon: Clock, label: 'Darba laiks', hours: contactInfo.hours },
-]
 
 // Geocoding the free-text STREET address (`q=<address>`) turned out to be unreliable with
 // this key-less embed: the "5-k-2" building/block suffix occasionally fails to geocode at all,
@@ -26,6 +24,21 @@ const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
 )}&z=17&output=embed`
 
 export function Contact() {
+  const t = useT()
+  const { language } = useLanguage()
+  const rows = [
+    { icon: MapPin, label: t.contact.adrese, value: contactInfo.address },
+    { icon: Phone, label: t.contact.telefons, value: contactInfo.phone, href: contactInfo.telHref },
+    {
+      icon: Clock,
+      label: t.contact.darbaLaiks,
+      hours: contactInfo.hours.map((row) => ({
+        ...row,
+        days: language === 'en' ? contactDaysEn[row.days] || row.days : row.days,
+      })),
+    },
+  ]
+
   return (
     <section id="kontakti" className="relative overflow-hidden py-24 md:py-32">
       <GlowLines />
@@ -33,13 +46,13 @@ export function Contact() {
         <div className="grid gap-14 lg:grid-cols-2">
           <div>
             <Reveal>
-              <Eyebrow>Kontakti</Eyebrow>
+              <Eyebrow>{t.contact.eyebrow}</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ivory sm:text-5xl">
                 PONTONS
               </h2>
-              <p className="mt-1 font-display text-sm text-muted">Dāmu un kungu frizētava</p>
+              <p className="mt-1 font-display text-sm text-muted">{t.contact.tagline}</p>
             </Reveal>
 
             <Reveal delay={0.16} className="mt-9 flex flex-col gap-5">

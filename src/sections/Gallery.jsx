@@ -6,12 +6,19 @@ import { Reveal } from '../components/Reveal'
 import { GalleryItem } from '../components/GalleryItem'
 import { Lightbox } from '../components/Lightbox'
 import { galleryItems } from '../data/gallery'
+import { galleryAltEn } from '../i18n/content.en'
+import { useT } from '../i18n/ui'
+import { useLanguage } from '../lib/LanguageContext'
 
 export function Gallery() {
   const [index, setIndex] = useState(null)
+  const t = useT()
+  const { language } = useLanguage()
+  const translatedItems =
+    language === 'en' ? galleryItems.map((item) => ({ ...item, alt: galleryAltEn[item.id] || item.alt })) : galleryItems
 
   const navigate = (delta) => {
-    setIndex((current) => (current + delta + galleryItems.length) % galleryItems.length)
+    setIndex((current) => (current + delta + translatedItems.length) % translatedItems.length)
   }
 
   return (
@@ -20,23 +27,23 @@ export function Gallery() {
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <Eyebrow center>Galerija</Eyebrow>
+            <Eyebrow center>{t.gallery.eyebrow}</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ivory sm:text-5xl">
-              Mūsu darbnīca tuvplānā
+              {t.gallery.heading}
             </h2>
           </Reveal>
         </div>
 
         <Reveal delay={0.14} className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-4">
-          {galleryItems.map((item, i) => (
+          {translatedItems.map((item, i) => (
             <GalleryItem key={item.id} {...item} onOpen={() => setIndex(i)} />
           ))}
         </Reveal>
       </Container>
 
-      <Lightbox items={galleryItems} index={index} onClose={() => setIndex(null)} onNavigate={navigate} />
+      <Lightbox items={translatedItems} index={index} onClose={() => setIndex(null)} onNavigate={navigate} />
     </section>
   )
 }

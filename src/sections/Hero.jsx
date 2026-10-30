@@ -7,20 +7,19 @@ import { InfoCard } from '../components/InfoCard'
 import { Media } from '../components/Media'
 import { Reveal } from '../components/Reveal'
 import { ScrollMouse } from '../components/ScrollMouse'
+import { useT } from '../i18n/ui'
 
 // Three.js + R3F are heavy — load them only once the browser is idle after first paint.
 const ScissorsCanvas = lazy(() =>
   import('../components/scissors/ScissorsCanvas').then((m) => ({ default: m.ScissorsCanvas }))
 )
 
-const infoCards = [
-  { icon: Users, title: 'Profesionāla komanda', description: 'Pieredzējuši meistari' },
-  { icon: Gem, title: 'Kvalitatīvi rezultāti', description: 'Individuāla pieeja' },
-  { icon: MapPin, title: 'Ērta atrašanās vieta', description: 'Viegli atrast' },
-  { icon: Clock3, title: 'Ērts pieraksts', description: 'Zvani un piesakies' },
-]
+const infoIcons = [Users, Gem, MapPin, Clock3]
 
 export function Hero() {
+  const t = useT()
+  const infoCards = t.infoCards.map((card, i) => ({ ...card, icon: infoIcons[i] }))
+
   return (
     <section
       id="sakums"
@@ -47,7 +46,7 @@ export function Hero() {
           <div className="relative z-10 max-w-xl">
             <Reveal>
               <span className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-accent-2">
-                Dāmu un kungu frizētava
+                {t.hero.eyebrow}
               </span>
             </Reveal>
             <Reveal delay={0.08}>
@@ -61,21 +60,21 @@ export function Hero() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="mt-5 font-display text-xl font-medium text-white/85 sm:text-2xl">
-                Tavs stils — mūsu darbs.
+                {t.hero.subtitle}
               </p>
             </Reveal>
             <Reveal delay={0.24}>
               <p className="text-balance mt-4 max-w-md text-base leading-relaxed text-muted">
-                Profesionāla frizieru komanda, moderns stils un individuāla pieeja katram klientam.
+                {t.hero.description}
               </p>
             </Reveal>
             <Reveal delay={0.32}>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Button as="button" onClick={openCallModal} icon={Phone}>
-                  Zvanīt
+                  {t.hero.callBtn}
                 </Button>
                 <Button href="#pakalpojumi" variant="secondary" icon={ArrowRight}>
-                  Apskatīt pakalpojumus
+                  {t.hero.servicesBtn}
                 </Button>
               </div>
             </Reveal>
@@ -102,7 +101,7 @@ export function Hero() {
         href="#pakalpojumi"
         className="relative z-10 mx-auto mt-10 hidden flex-col items-center gap-2 text-white/40 transition-colors hover:text-accent-2 md:flex"
       >
-        <span className="font-display text-[10px] uppercase tracking-[0.3em]">Ritini lejup</span>
+        <span className="font-display text-[10px] uppercase tracking-[0.3em]">{t.hero.scrollHint}</span>
         <ScrollMouse className="text-current" />
       </a>
     </section>

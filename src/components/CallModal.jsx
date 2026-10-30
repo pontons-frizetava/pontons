@@ -5,12 +5,14 @@ import { contactInfo } from '../data/contactInfo'
 import { socials } from '../data/socials'
 import { OPEN_CALL_MODAL_EVENT } from '../lib/callModal'
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll'
+import { useT } from '../i18n/ui'
 
 const formatPhone = (p) => `${p.slice(0, 2)} ${p.slice(2, 5)} ${p.slice(5)}`
 
 export function CallModal() {
   const [open, setOpen] = useState(false)
   useLockBodyScroll(open)
+  const t = useT()
 
   useEffect(() => {
     const show = () => setOpen(true)
@@ -47,7 +49,7 @@ export function CallModal() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Aizvērt"
+              aria-label={t.common.aizvert}
               className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-ink/60 text-white transition-colors hover:border-accent/50 hover:text-accent-2"
             >
               <X size={18} />
@@ -56,7 +58,7 @@ export function CallModal() {
             <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent-2">
               <Phone size={24} strokeWidth={1.75} />
             </span>
-            <p className="mt-5 text-sm text-muted">Lai pierakstītos, zvani uz numuru</p>
+            <p className="mt-5 text-sm text-muted">{t.callModal.instruction}</p>
             <a
               href={contactInfo.telHref}
               className="mt-2 block font-display text-4xl font-bold tracking-wide text-ivory transition-colors hover:text-accent-2"
@@ -68,10 +70,10 @@ export function CallModal() {
               className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 font-display text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-2"
             >
               <Phone size={16} strokeWidth={2.25} />
-              Zvanīt tagad
+              {t.callModal.callNow}
             </a>
 
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted">Vai seko mums</p>
+            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted">{t.callModal.followUs}</p>
             <div className="mt-3 flex items-center justify-center gap-3">
               {socials.map(({ id, label, href, icon: Icon }) => (
                 <a

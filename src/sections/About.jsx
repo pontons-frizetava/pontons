@@ -5,14 +5,14 @@ import { Reveal } from '../components/Reveal'
 import { Media } from '../components/Media'
 import { Button } from '../components/Button'
 import { openCallModal } from '../lib/callModal'
+import { useT } from '../i18n/ui'
 
-const values = [
-  { icon: Award, label: 'Profesionalitāte' },
-  { icon: Sparkle, label: 'Kvalitāte' },
-  { icon: HeartHandshake, label: 'Individualitāte' },
-]
+const valueIcons = [Award, Sparkle, HeartHandshake]
 
 export function About() {
+  const t = useT()
+  const values = t.about.values.map((label, i) => ({ icon: valueIcons[i], label }))
+
   return (
     <section id="par-mums" className="relative py-24 md:py-32">
       <Container>
@@ -30,17 +30,16 @@ export function About() {
 
           <div>
             <Reveal>
-              <Eyebrow>Par Pontons</Eyebrow>
+              <Eyebrow>{t.about.eyebrow}</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ivory sm:text-5xl">
-                Stils, kas runā tavā vārdā
+                {t.about.heading}
               </h2>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="text-balance mt-6 max-w-lg text-base leading-relaxed text-muted">
-                PONTONS ir dāmu un kungu frizētava, kur profesionāls serviss, kvalitāte un individuāla
-                pieeja satiekas ar modernu stilu.
+                {t.about.description}
               </p>
             </Reveal>
 
@@ -58,7 +57,7 @@ export function About() {
 
             <Reveal delay={0.32}>
               <Button as="button" onClick={openCallModal} icon={Phone} className="mt-9">
-                Zvanīt
+                {t.common.zvanit}
               </Button>
             </Reveal>
           </div>

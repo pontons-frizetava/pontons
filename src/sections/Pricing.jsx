@@ -6,6 +6,10 @@ import { Eyebrow } from '../components/Eyebrow'
 import { Reveal } from '../components/Reveal'
 import { PriceCard } from '../components/PriceCard'
 import { priceCategories } from '../data/priceList'
+import { priceCategoriesEn } from '../i18n/content.en'
+import { translateCategories } from '../i18n/translate'
+import { useT } from '../i18n/ui'
+import { useLanguage } from '../lib/LanguageContext'
 
 function PhoneNote({ icon: Icon = Phone, children, phone }) {
   return (
@@ -23,27 +27,28 @@ function PhoneNote({ icon: Icon = Phone, children, phone }) {
 
 export function Pricing() {
   const [activeCategory, setActiveCategory] = useState('visi')
+  const t = useT()
+  const { language } = useLanguage()
+  const categories = translateCategories(priceCategories, priceCategoriesEn, language)
 
-  const tabs = [{ id: 'visi', label: 'Visi' }, ...priceCategories.map((c) => ({ id: c.id, label: c.label }))]
+  const tabs = [{ id: 'visi', label: t.pricing.tabAll }, ...categories.map((c) => ({ id: c.id, label: c.label }))]
   const visibleCategories =
-    activeCategory === 'visi' ? priceCategories : priceCategories.filter((c) => c.id === activeCategory)
+    activeCategory === 'visi' ? categories : categories.filter((c) => c.id === activeCategory)
 
   return (
     <section id="cenradis" className="relative py-24 md:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <Eyebrow center>Cenrādis</Eyebrow>
+            <Eyebrow center>{t.pricing.eyebrow}</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ivory sm:text-5xl">
-              Pakalpojumi un cenas
+              {t.pricing.heading}
             </h2>
           </Reveal>
           <Reveal delay={0.14}>
-            <p className="mt-4 text-base text-muted">
-              Pilns PONTONS pakalpojumu klāsts un cenas — izvēlies kategoriju un piesakies sev ērtā laikā.
-            </p>
+            <p className="mt-4 text-base text-muted">{t.pricing.subtitle}</p>
           </Reveal>
         </div>
 
@@ -97,7 +102,7 @@ export function Pricing() {
                   {category.discount && (
                     <PhoneNote icon={Percent} phone={category.phone}>
                       {category.discount}
-                      {category.phone && ' Pieraksts:'}
+                      {category.phone && ` ${t.pricing.booking}`}
                     </PhoneNote>
                   )}
 
@@ -106,7 +111,7 @@ export function Pricing() {
                   )}
 
                   {!category.discount && !category.note && category.phone && (
-                    <PhoneNote phone={category.phone}>Pieraksts:</PhoneNote>
+                    <PhoneNote phone={category.phone}>{t.pricing.booking}</PhoneNote>
                   )}
                 </div>
 
