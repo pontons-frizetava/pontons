@@ -18,7 +18,7 @@ export const socials = [
   {
     id: 'tiktok',
     label: 'TikTok — PONTONS',
-    href: 'https://www.tiktok.com/@pontons_ponto',
+    href: 'https://www.tiktok.com/@pontons.lv',
     icon: TikTokIcon,
   },
 ]
