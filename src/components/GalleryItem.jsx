@@ -14,6 +14,7 @@ export function GalleryItem({ image, alt, tall, onOpen }) {
       <Media
         src={image}
         alt={alt}
+        eager
         className="h-full w-full"
         imgClassName="transition-transform duration-700 ease-out group-hover:scale-110"
       />
