@@ -36,11 +36,15 @@ export function Gallery() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.14} className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-4">
+        <div className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-4">
           {translatedItems.map((item, i) => (
-            <GalleryItem key={item.id} {...item} onOpen={() => setIndex(i)} />
+            <div key={item.id} className="mb-4" style={{ breakInside: 'avoid' }}>
+              <Reveal delay={0.14 + i * 0.05}>
+                <GalleryItem {...item} onOpen={() => setIndex(i)} />
+              </Reveal>
+            </div>
           ))}
-        </Reveal>
+        </div>
       </Container>
 
       <Lightbox items={translatedItems} index={index} onClose={() => setIndex(null)} onNavigate={navigate} />

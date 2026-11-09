@@ -15,6 +15,7 @@ export function Reveal({ children, delay = 0, y = 28, className = '' }) {
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
+      style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
     >
       {children}
     </motion.div>
