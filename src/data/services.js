@@ -1,4 +1,4 @@
-import { Scissors, Sparkles, Zap, Palette } from 'lucide-react'
+import { Scissors, Sparkles, Zap, Palette, Hand } from 'lucide-react'
 
 // Prices match the salon's current price sheets ("no" = from). No durations are defined for these
 // cards — none were supplied, so none are shown.
@@ -42,5 +42,15 @@ export const services = [
       'Matu krāsošana un tonēšana ar kvalitatīviem produktiem — jauns izskats, kas iedvesmo jaunu Tu.',
     price: 'no 50 €',
     image: '/images/services/coloring.webp',
+  },
+  {
+    id: 'skaisti-nagi',
+    icon: Hand,
+    title: 'Skaistiem nagiem',
+    description: 'Manikīrs, pedikīrs un podoloģija',
+    details:
+      'Mūsu sertificētā podoloģe piedāvā gan klasisko manikīru un pedikīru, gan estētiskās un podoloģiskās pēdu kopšanas procedūras — skaisti un veseli nagi ikdienai un īpašai aprūpei.',
+    price: 'no 15 €',
+    image: '/images/services/nails.jpg',
   },
 ]

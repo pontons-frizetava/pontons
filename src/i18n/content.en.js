@@ -34,6 +34,12 @@ export const servicesEn = {
     description: 'New look — new you',
     details: 'Hair coloring and toning with quality products — a new look that inspires a new you.',
   },
+  'skaisti-nagi': {
+    title: 'Beautiful nails',
+    description: 'Manicure, pedicure & podology',
+    details:
+      'Our certified podologist offers classic manicures and pedicures as well as aesthetic and podological foot care treatments — beautiful, healthy nails for everyday and special care.',
+  },
 }
 
 export const galleryAltEn = {
