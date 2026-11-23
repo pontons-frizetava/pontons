@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X, Clock3, Tag, Phone } from 'lucide-react'
+import { X, Clock3, Tag, Phone, ZoomIn } from 'lucide-react'
 import { Media } from './Media'
 import { Button } from './Button'
 import { openCallModal } from '../lib/callModal'
@@ -8,8 +9,14 @@ import { useT } from '../i18n/ui'
 
 export function ServiceModal({ service, onClose }) {
   const open = Boolean(service)
-  useLockBodyScroll(open)
+  const [zoomed, setZoomed] = useState(false)
+  useLockBodyScroll(open || zoomed)
   const t = useT()
+
+  function handleClose() {
+    setZoomed(false)
+    onClose?.()
+  }
 
   return (
     <AnimatePresence>
@@ -20,7 +27,7 @@ export function ServiceModal({ service, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-[90] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-md"
-          onClick={onClose}
+          onClick={handleClose}
         >
           <motion.div
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
@@ -32,14 +39,24 @@ export function ServiceModal({ service, onClose }) {
           >
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               aria-label={t.common.aizvert}
               className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-ink/60 text-white backdrop-blur-sm transition-colors hover:border-accent/50 hover:text-accent-2"
             >
               <X size={18} />
             </button>
 
-            <Media src={service?.image} alt={service?.title} overlay className="h-56 w-full" />
+            <button
+              type="button"
+              onClick={() => setZoomed(true)}
+              aria-label={t.common.palielinat}
+              className="group relative block w-full"
+            >
+              <Media src={service?.image} alt={service?.title} overlay className="h-56 w-full" />
+              <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-ink/60 text-white backdrop-blur-sm transition-colors group-hover:border-accent/50 group-hover:text-accent-2">
+                <ZoomIn size={16} />
+              </span>
+            </button>
 
             <div className="p-7 sm:p-9">
               <span className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent-2">
@@ -75,6 +92,32 @@ export function ServiceModal({ service, onClose }) {
               </Button>
             </div>
           </motion.div>
+        </motion.div>
+      )}
+
+      {zoomed && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[95] flex items-center justify-center bg-ink/95 p-4 backdrop-blur-md"
+          onClick={() => setZoomed(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setZoomed(false)}
+            aria-label={t.common.aizvert}
+            className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-line text-ivory transition-colors hover:border-accent/50 hover:text-accent-2"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={service?.image}
+            alt={service?.title}
+            className="max-h-full max-w-full rounded-2xl object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
         </motion.div>
       )}
     </AnimatePresence>

@@ -19,6 +19,7 @@ export const uiText = {
       atvertIzvelni: 'Atvērt izvēlni',
       aizvertIzvelni: 'Aizvērt izvēlni',
       sekoMums: 'Seko mums',
+      palielinat: 'Palielināt attēlu',
     },
     hero: {
       eyebrow: 'Dāmu un kungu frizētava',
@@ -99,6 +100,7 @@ export const uiText = {
       atvertIzvelni: 'Open menu',
       aizvertIzvelni: 'Close menu',
       sekoMums: 'Follow us',
+      palielinat: 'Zoom in on image',
     },
     hero: {
       eyebrow: 'Hair salon for women and men',
